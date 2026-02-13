@@ -10,6 +10,8 @@ After deploying (e.g. to Railway), use the forwarder’s public URL as your prox
 
 Deploy to any host that exposes a TCP port (e.g. Railway). Set the appropriate environment variables for your chosen strategy. Clients then use the forwarder’s public URL and port as their proxy—no credentials required on the client side.
 
+<img width="652" height="527" alt="image" src="https://github.com/user-attachments/assets/d187f4a7-3367-4840-aa05-899be0369936" />
+
 ## Upstream selection strategies
 
 You run the forwarder in one of three modes. Choose the strategy that matches your provider and port layout.
