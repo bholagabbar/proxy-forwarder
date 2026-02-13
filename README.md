@@ -8,7 +8,7 @@ After deploying to your infrastructure provider, use the forwarder's public URL 
 
 ## Deployment
 
-Runs on Node.js. Entry point is `src/index.ts`. Deploy to any infrastructure provider that lets you expose a service over a TCP port (e.g. [Railway](https://railway.app)).
+Deploy to any infrastructure provider that lets you expose a service over a TCP port (e.g. [Railway](https://railway.app)).
 
 The least complicated setup: set `UPSTREAM_PROXY_HOST` and `PROXY_PORT` (this should've been named UPSTREAM_PROXY_PORT, but oh well), then deploy and run.
 
