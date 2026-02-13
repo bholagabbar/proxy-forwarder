@@ -16,7 +16,31 @@ Once deployed, simply use the forwarder's public URL and port as your proxy—no
 
 <img width="652" height="527" alt="image" src="https://github.com/user-attachments/assets/d187f4a7-3367-4840-aa05-899be0369936" />
 
+```bash
+npm i
+npm run build
+npm run start
+```
+
+Or skip the build and run TypeScript directly via [`tsx`](https://tsx.is/):
+
+```bash
+npm i
+npm run start:tsx
+```
+
 ### Deploy with Docker
+
+A pre-built image is published to Docker Hub on every push to `main`.
+
+```bash
+docker run -d -p 8000:8000 \
+  -e UPSTREAM_PROXY_HOST=http://user:pass@your-upstream-proxy.com \
+  -e PROXY_PORT=8080 \
+  bholagabbar/proxy-forwarder:latest
+```
+
+Or build from source:
 
 ```bash
 docker build -t proxy-forwarder .
