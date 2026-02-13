@@ -8,7 +8,23 @@ After deploying to your infrastructure provider, use the forwarder’s public UR
 
 ## Deployment
 
-Deploy to any infrastructure provider that lets you expose a service over a TCP port (e.g. [Railway](https://railway.app)). Set the appropriate environment variables for your chosen strategy. Clients then use the forwarder’s public URL and port as their proxy—no credentials required on the client side.
+Runs on Node.js. Entry point is `src/index.ts`. Deploy to any infrastructure provider that lets you expose a service over a TCP port (e.g. [Railway](https://railway.app)).
+
+The least complicated setup: set `UPSTREAM_PROXY_HOST` and `PROXY_PORT`, then deploy and run.
+
+Once deployed, simply use the forwarder’s public URL and port as your proxy—no credentials required on the client side.
+
+### Deploy with Docker
+
+```bash
+docker build -t proxy-forwarder .
+docker run -d -p 8000:8000 \
+  -e UPSTREAM_PROXY_HOST=http://user:pass@your-upstream-proxy.com \
+  -e PROXY_PORT=8080 \
+  proxy-forwarder
+```
+
+Set `PORT` if you want the forwarder to listen on something other than 8000. Use the same env vars as in [Environment reference](#environment-reference) for port-range or fixed-list strategies.
 
 <img width="652" height="527" alt="image" src="https://github.com/user-attachments/assets/d187f4a7-3367-4840-aa05-899be0369936" />
 
@@ -42,6 +58,8 @@ You run the forwarder in one of three modes. Choose the strategy that matches yo
 Copy `.env.example` to `.env` and configure for your chosen strategy.
 
 ## Local development
+
+Requires [Node.js 22](https://nodejs.org/en/download/current/).
 
 ```bash
 npm i
