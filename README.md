@@ -4,7 +4,7 @@ HTTP proxy that forwards traffic to an authenticated upstream proxy. Use it when
 
 Many runtimes do not support authenticated HTTP proxies. Puppeteer accepts only `--proxy-server=host:port` and has no API for username/password ([puppeteer/puppeteer#676](https://github.com/puppeteer/puppeteer/issues/676)). Deploy this service in front of your real proxy; your app connects to the forwarder without credentials, and the forwarder adds auth to the upstream.
 
-After deploying to your infrastructure provider, use the forwarder's public URL as your proxy in Puppeteer (see [Example (Puppeteer)](#example-puppeteer)).
+After deploying to your infrastructure provider, use the forwarder's public URL as your proxy (see [Puppeteer example](#example-puppeteer)).
 
 ## Deployment
 
