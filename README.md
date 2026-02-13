@@ -4,11 +4,11 @@ HTTP proxy that forwards traffic to an authenticated upstream proxy. Use it when
 
 Many runtimes do not support authenticated HTTP proxies. Puppeteer accepts only `--proxy-server=host:port` and has no API for username/password ([puppeteer/puppeteer#676](https://github.com/puppeteer/puppeteer/issues/676)). Deploy this service in front of your real proxy; your app connects to the forwarder without credentials, and the forwarder adds auth to the upstream.
 
-After deploying (e.g. to Railway), use the forwarder’s public URL as your proxy in Puppeteer (see [Example (Puppeteer)](#example-puppeteer)).
+After deploying to your infrastructure provider, use the forwarder’s public URL as your proxy in Puppeteer (see [Example (Puppeteer)](#example-puppeteer)).
 
 ## Deployment
 
-Deploy to any host that exposes a TCP port (e.g. Railway). Set the appropriate environment variables for your chosen strategy. Clients then use the forwarder’s public URL and port as their proxy—no credentials required on the client side.
+Deploy to any infrastructure provider that lets you expose a service over a TCP port (e.g. [Railway](https://railway.app)). Set the appropriate environment variables for your chosen strategy. Clients then use the forwarder’s public URL and port as their proxy—no credentials required on the client side.
 
 <img width="652" height="527" alt="image" src="https://github.com/user-attachments/assets/d187f4a7-3367-4840-aa05-899be0369936" />
 
@@ -52,7 +52,7 @@ npm run dev
 ## Example (Puppeteer)
 
 ```js
-const forwarder = process.env.PROXY_FORWARDER_URL; // e.g. http://your-app.railway.app:8000
+const forwarder = process.env.PROXY_FORWARDER_URL; // e.g. http://your-proxy-forwarder:8000
 
 const browser = await puppeteer.launch({
   args: [`--proxy-server=${new URL(forwarder).host}`],
