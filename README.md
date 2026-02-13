@@ -48,7 +48,7 @@ You run the forwarder in one of three modes. Choose the strategy that matches yo
 |----------|-------------|
 | `PORT` | Listen port (default `8000`). |
 | `UPSTREAM_PROXY_HOST` | Upstream URL including auth, e.g. `http://user:pass@host` (required unless using fixed list). |
-| `PROXY_PORT` | Static upstream port (optional; used by static-port strategy). |
+| `PROXY_PORT` | Static upstream port (should've been named `UPSTREAM_PROXY_PORT`, but oh well). |
 | `PROXY_PORT_LOWER`, `PROXY_PORT_UPPER` | Port range for port-range strategy. |
 | `USE_PROXY_LIST` | Set to `true` for fixed-list strategy. |
 | `PROXY_LIST` | JSON array of full proxy URLs. Required when `USE_PROXY_LIST=true`. |
