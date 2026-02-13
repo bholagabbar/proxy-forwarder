@@ -31,7 +31,7 @@ npm run start:tsx
 
 ### Deploy with Docker
 
-A pre-built image is published to Docker Hub on every push to `main`.
+A [pre-built image](https://hub.docker.com/r/bholagabbar/proxy-forwarder) is published to Docker Hub on every push to `main`.
 
 ```bash
 docker run -d -p 8000:8000 \
