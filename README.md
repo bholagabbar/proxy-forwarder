@@ -4,15 +4,17 @@ HTTP proxy that forwards traffic to an authenticated upstream proxy. Use it when
 
 Many runtimes do not support authenticated HTTP proxies. Puppeteer accepts only `--proxy-server=host:port` and has no API for username/password ([puppeteer/puppeteer#676](https://github.com/puppeteer/puppeteer/issues/676)). Deploy this service in front of your real proxy; your app connects to the forwarder without credentials, and the forwarder adds auth to the upstream.
 
-After deploying to your infrastructure provider, use the forwarder’s public URL as your proxy in Puppeteer (see [Example (Puppeteer)](#example-puppeteer)).
+After deploying to your infrastructure provider, use the forwarder's public URL as your proxy in Puppeteer (see [Example (Puppeteer)](#example-puppeteer)).
 
 ## Deployment
 
 Runs on Node.js. Entry point is `src/index.ts`. Deploy to any infrastructure provider that lets you expose a service over a TCP port (e.g. [Railway](https://railway.app)).
 
-The least complicated setup: set `UPSTREAM_PROXY_HOST` and `PROXY_PORT`, then deploy and run.
+The least complicated setup: set `UPSTREAM_PROXY_HOST` and `PROXY_PORT` (this should've been named UPSTREAM_PROXY_PORT, but oh well), then deploy and run.
 
-Once deployed, simply use the forwarder’s public URL and port as your proxy—no credentials required on the client side.
+Once deployed, simply use the forwarder's public URL and port as your proxy—no credentials required on the client side.
+
+<img width="652" height="527" alt="image" src="https://github.com/user-attachments/assets/d187f4a7-3367-4840-aa05-899be0369936" />
 
 ### Deploy with Docker
 
@@ -24,9 +26,6 @@ docker run -d -p 8000:8000 \
   proxy-forwarder
 ```
 
-Set `PORT` if you want the forwarder to listen on something other than 8000. Use the same env vars as in [Environment reference](#environment-reference) for port-range or fixed-list strategies.
-
-<img width="652" height="527" alt="image" src="https://github.com/user-attachments/assets/d187f4a7-3367-4840-aa05-899be0369936" />
 
 ## Upstream selection strategies
 
@@ -47,8 +46,8 @@ You run the forwarder in one of three modes. Choose the strategy that matches yo
 | Variable | Description |
 |----------|-------------|
 | `PORT` | Listen port (default `8000`). |
-| `UPSTREAM_PROXY_HOST` | Upstream URL including auth, e.g. `http://user:pass@host` (required unless using fixed list). |
-| `PROXY_PORT` | Static upstream port (should've been named `UPSTREAM_PROXY_PORT`, but oh well). |
+| `UPSTREAM_PROXY_HOST` | Upstream proxy provider's host URL including auth, e.g. `http://user:pass@host` (required unless using fixed list). |
+| `PROXY_PORT` | Upstream proxy provider's port |
 | `PROXY_PORT_LOWER`, `PROXY_PORT_UPPER` | Port range for port-range strategy. |
 | `USE_PROXY_LIST` | Set to `true` for fixed-list strategy. |
 | `PROXY_LIST` | JSON array of full proxy URLs. Required when `USE_PROXY_LIST=true`. |
